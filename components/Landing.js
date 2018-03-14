@@ -11,7 +11,7 @@ export default class Landing extends React.Component {
                 <View style={styles.brand}>
                     <Text style={styles.label}>My</Text>
                     <Text style={styles.label}>Journal</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.props._login}>
                         <View style={styles.button}>
                             <Text style={styles.buttonText}>Enter</Text>
                         </View>
@@ -33,17 +33,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     label:{
-        fontSize: width / 7 
+        fontSize: width / 5,
+        fontFamily: 'londrina' 
     },
     button:{
         borderColor: 'black',
         borderWidth: 2,
-        marginTop: 10,
+        marginTop: 20,
         width: width / 3,
         alignItems: 'center'
     },
     buttonText: {
-        fontSize: width / 20,
+        fontSize: width / 17,
+        fontFamily: 'londrina',
         padding: 5        
     }
 })
