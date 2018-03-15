@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, StyleSheet, Dimensions, TouchableOpacity} from 'react-native'
+import {View, Text, StyleSheet, Dimensions, TouchableOpacity, ImageBackground} from 'react-native'
 
 
 const {width, height} = Dimensions.get('window')
@@ -7,6 +7,7 @@ const {width, height} = Dimensions.get('window')
 export default class Landing extends React.Component {
     render(){
         return(
+            <ImageBackground source={require('../assets/images/Journal.png')} style={{flex: 1}}>
             <View style={styles.container}>
                 <View style={styles.brand}>
                     <Text style={styles.label}>My</Text>
@@ -18,6 +19,7 @@ export default class Landing extends React.Component {
                     </TouchableOpacity>
                 </View>
             </View>
+            </ImageBackground>
         )
     }
 }

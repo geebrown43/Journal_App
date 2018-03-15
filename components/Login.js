@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   Dimensions,
-  AsyncStorage
+  AsyncStorage,
+  ImageBackground
 } from "react-native";
 import Modal from "react-native-modal";
 
@@ -29,36 +30,54 @@ export default class Login extends React.Component {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <LoginScreen modalVisible={this.state.modalVisible} _successLogin={this.props._successLogin}/> 
-      </View>
+      <ImageBackground source={require('../assets/images/Journal.png')} style={{ flex: 1 }}>
+        <LoginScreen modalVisible={this.state.modalVisible} _successLogin={this.props._successLogin} />
+      </ImageBackground>
     );
   }
 }
 
 const LoginScreen = ({ modalVisible, _successLogin }) => (
-    <Modal isVisible={modalVisible} onBackdropPress = {_successLogin}>
+  <Modal isVisible={modalVisible} onBackdropPress={_successLogin} animationIn='zoomIn'>
+    <View style={styles.modalSize}>
+      <View style={styles.login}>
+        <Text style={{ fontSize: 28, fontFamily: 'londrina' }}>Login</Text>
+      </View>
+      <View style={styles.hr} />
       <View style={styles.modalView}>
         <View style={styles.modalContainer}>
-            <Text style={styles.inputFields}>Username</Text>
-            <View style={styles.modalInput}>
-                <TextInput style={{fontSize: 20}}/>
-            </View>
+          <Text style={styles.inputFields}>Username</Text>
+          <View style={styles.modalInput}>
+            <TextInput />
+          </View>
 
         </View>
         <View style={styles.modalContainer}>
-            <Text style={styles.inputFields}>Password</Text>
-            <View style={styles.modalInput}>
-                <TextInput style={{fontSize: 20}}/>
-            </View>
+          <Text style={styles.inputFields}>Password</Text>
+          <View style={styles.modalInput}>
+            <TextInput />
+          </View>
         </View>
-            <TouchableOpacity>
-                <View style={styles.button}>
-                    <Text style={styles.buttonText}>Login</Text>
-                </View>
-            </TouchableOpacity>
+        <TouchableOpacity>
+          <View style={styles.button}>
+            <Text>Login</Text>
+          </View>
+        </TouchableOpacity>
+        <View style={styles.signUp}>
+          <Text style={{ fontSize: 20, fontFamily: 'londrina', margin: 5 }}>No Account ?</Text>
+          <TouchableOpacity><Text style={{ fontSize: 20, fontFamily: 'londrina', margin: 5, textDecorationLine: 'underline', textDecorationStyle: 'solid' }}>Sign-Up</Text></TouchableOpacity>
+        </View>
       </View>
-    </Modal>
+
+      <View style={styles.hr} />
+      <View style={styles.close}>
+        <TouchableOpacity>
+          <Text>CLOSE</Text>
+        </TouchableOpacity>
+      </View>
+
+    </View>
+  </Modal>
 );
 
 const styles = StyleSheet.create({
@@ -66,12 +85,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   modalView: {
-    height: height - 200,
-    backgroundColor: "white",
-    borderRadius:8,
+    flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
-    
+    alignItems: 'center',
+    backgroundColor: 'rgb(240, 226, 86)'
+
   },
   modalContainer: {
     width: width / 2,
@@ -83,20 +101,40 @@ const styles = StyleSheet.create({
     height: 30
   },
   button: {
-      borderColor: 'black',
-      borderWidth: 1,
-      borderRadius: 6,
-      width: width / 4,
-      alignItems: 'center',
-      margin: 10
+    borderColor: 'black',
+    borderWidth: 1
   },
-  inputFields:{
-      fontFamily: 'londrina',
-      fontSize: 26,
+  inputFields: {
+    fontFamily: 'londrina',
+    fontSize: 26
   },
-  buttonText:{
-      fontSize: 18,
-      fontFamily: 'londrina',
-      padding: 5
+  hr: {
+    borderWidth: 1,
+    borderColor: 'black',
+    height: 1,
+  },
+  modalSize: {
+    height: height - 200,
+    borderRadius: 8,
+    justifyContent: 'space-between',
+    backgroundColor: 'white'
+  },
+  close: {
+    margin: 15,
+    alignItems: 'center'
+  },
+  login: {
+    margin: 10,
+    alignItems: 'center',
+    backgroundColor: 'white'
+  },
+  createAccount: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 10
+  },
+  signUp: {
+    flexDirection: 'row',
+    marginTop: height / 8
   }
 });
